@@ -1,39 +1,87 @@
 import {useState} from "react"
-import {Link} from "react-router-dom"
+import {gql, useMutation} from "@apollo/client"
 
+import { useForm } from "../utils/custom-hooks"
 import "../styles/login.css"
 
-const Login = () => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+const Login = (props) => {
+    const [errors, setErrors] = useState({})
+
+    const {onChange, handleSubmit, values} = useForm(loginUserCallback, {
+        username: "",
+        password: ""
+    })
+
+
+    const [loginUser, {loading}] = useMutation(LOGIN_USER,{
+        update(proxy, result){
+            console.log(result)
+            props.history.push("/home")
+        },
+        onError(err){
+            setErrors(err.graphQLErrors[0].extensions.exception.errors)
+            console.log(err.graphQLErrors[0].extensions.exception.errors)
+        },
+        variables: values
+    })
+
+    function loginUserCallback() {
+        loginUser()
+    }
+
     return(
-        <div className="login-container">
-            <div className="login-form-container">
-                <form className="form">
-                    <div className="login-title">LOGIN</div>
+        <div className="register-container">
+            <div className="register-form-container">
+                <form className="form" onSubmit={handleSubmit}>
+                    <div className="register-title">Register</div>
                     <input 
                     className="input"
                     type="text"
+                    label="Username"
                     placeholder="unsername"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
+                    name="username"
+                    value={values.username}
+                    
+                    onChange={onChange}
                     />
 
-                    <input
+                    <input 
                     className="input"
                     type="password"
+                    label="Password"
                     placeholder="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    name="password"
+                    value={values.password}
+                    onChange={onChange}
                     />
-
-                    <button className="submit-btn">Submit</button>
+                    <button>Login</button>
                 </form>
-                <div>Don't have a login?</div>
-                <Link to="register">Register</Link>
+                {Object.keys(errors).length > 0 ? 
+                    <div className="ui error message">
+                        <ul className="list">
+                        {Object.values(errors).map((value) => (
+                        <li key={value}>{value}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    :
+                    null
+                }
             </div>
         </div>
     )
 }
+
+const LOGIN_USER = gql`
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      id
+      email
+      username
+      createdAt
+      token
+    }
+  }
+`
 
 export default Login

@@ -1,30 +1,29 @@
 import {useState} from "react"
 import {gql, useMutation} from "@apollo/client"
-// import gql from "graphql-tag"
 
+import { useForm } from "../utils/custom-hooks"
 import "../styles/login.css"
-import { printIntrospectionSchema } from "graphql"
 
 const Register = (props) => {
-    // const [username, setUsername] = useState("")
-    // const [password, setPassword] = useState("")
-    // const [confirmPassword, setConfimPassword] = useState("")
     const [errors, setErrors] = useState({})
-    const [values, setValues] = useState({
+    const initialState = {
         username: "",
         email: "",
         password: "",
         confirmPassword: ""
-        })
-
-        const onChange = (e) => {
-            console.log("hit on change")
-            setValues({...values, [e.target.name]: e.target.value})
         }
+
+        const { onChange, handleSubmit, values} = useForm(registerUser, {
+            username: "",
+            email: "",
+            password: "",
+            confirmPassword: "" 
+        })
 
         const [addUser, {loading}] = useMutation(REGISTER_USER,{
             update(proxy, result){
                 console.log(result)
+                props.history.push("/home")
             },
             onError(err){
                 setErrors(err.graphQLErrors[0].extensions.exception.errors)
@@ -33,12 +32,8 @@ const Register = (props) => {
             variables: values
         })
 
-        const handleSubmit = (e) => {
-            console.log(' hit handle submit')
-            e.preventDefault()
+        function registerUser() {
             addUser()
-            props.history.push("/home")
-
         }
 
     return(
