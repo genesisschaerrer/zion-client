@@ -1,0 +1,32 @@
+.tittle {
+    color: red;
+}
+
+.loading-post {
+    color: yellow;
+}
+
+.post-container {
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 40%;
+    margin: 3em auto;
+}
+
+.lot-name {
+    font-size: 2em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: yellow;
+}
+
+.bottom-container {
+    display: flex;
+    justify-content: space-between;
+}
