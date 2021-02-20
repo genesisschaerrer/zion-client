@@ -3,6 +3,7 @@ import {gql, useMutation} from "@apollo/client"
 
 import { useForm } from "../utils/custom-hooks"
 import {AuthContext} from "../utils/context/auth"
+import LoginNav from "../navigation/login-nav"
 import "../styles/login.css"
 
 const Login = (props) => {
@@ -33,6 +34,8 @@ const Login = (props) => {
     }
 
     return(
+        <div>
+            <LoginNav />
         <div className="register-container">
             <div className="register-form-container">
                 <form className="form" onSubmit={handleSubmit}>
@@ -72,6 +75,7 @@ const Login = (props) => {
                 }
             </div>
         </div>
+    </div>
     )
 }
 
