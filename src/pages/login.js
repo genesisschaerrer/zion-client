@@ -1,10 +1,12 @@
-import {useState} from "react"
+import {useState, useContext} from "react"
 import {gql, useMutation} from "@apollo/client"
 
 import { useForm } from "../utils/custom-hooks"
+import {AuthContext} from "../utils/context/auth"
 import "../styles/login.css"
 
 const Login = (props) => {
+    const context = useContext(AuthContext)
     const [errors, setErrors] = useState({})
 
     const {onChange, handleSubmit, values} = useForm(loginUserCallback, {
@@ -15,7 +17,8 @@ const Login = (props) => {
 
     const [loginUser, {loading}] = useMutation(LOGIN_USER,{
         update(proxy, result){
-            console.log(result)
+            console.log(result.data.login)
+            context.login(result.data.login)
             props.history.push("/home")
         },
         onError(err){
@@ -33,7 +36,7 @@ const Login = (props) => {
         <div className="register-container">
             <div className="register-form-container">
                 <form className="form" onSubmit={handleSubmit}>
-                    <div className="register-title">Register</div>
+                    <div className="register-title">Login</div>
                     <input 
                     className="input"
                     type="text"

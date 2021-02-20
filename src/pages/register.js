@@ -1,10 +1,12 @@
-import {useState} from "react"
+import {useState, useContext} from "react"
 import {gql, useMutation} from "@apollo/client"
 
 import { useForm } from "../utils/custom-hooks"
+import {AuthContext} from "../utils/context/auth"
 import "../styles/login.css"
 
 const Register = (props) => {
+    const context = useContext(AuthContext)
     const [errors, setErrors] = useState({})
     const initialState = {
         username: "",
@@ -22,7 +24,8 @@ const Register = (props) => {
 
         const [addUser, {loading}] = useMutation(REGISTER_USER,{
             update(proxy, result){
-                console.log(result)
+                console.log(result.data.register)
+                context.login(result.data.register)
                 props.history.push("/home")
             },
             onError(err){

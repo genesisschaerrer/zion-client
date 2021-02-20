@@ -2,6 +2,7 @@ import React, {useEffect}from "react"
 // import { useQuery } from "@apollo/react-hooks"
 import { useQuery, gql } from "@apollo/client"
 
+import Navbar from "../navigation/navbar"
 import "../styles/home.css"
 
 const FETCH_POST_QUERY = gql`
@@ -38,6 +39,7 @@ const Home = () => {
 
     return(
         <div className="tittle">
+            <Navbar />
             Made it to Home
             {/* <div className="posts-container"> 
                 {data.getPosts.map(post => {
