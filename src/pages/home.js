@@ -1,10 +1,12 @@
-import React, {useEffect, useContext}from "react"
-import { useQuery } from "@apollo/client"
+import React, {useEffect, useContext, useState}from "react"
+import { gql, useQuery, useMutation } from "@apollo/client"
 import {Link, Redirect} from "react-router-dom"
 
 import Navbar from "../navigation/navbar"
 import {AuthContext} from "../utils/context/auth"
 import PostForm from "../posts/post-form"
+import DeleteBtn from "../posts/delete-btn"
+import Comments from "../posts/comments"
 import { FETCH_POST_QUERY } from "../utils/graphql"
 
 
@@ -12,18 +14,15 @@ import "../styles/home.css"
 
 const Home = () => {
     const { user } = useContext(AuthContext)
+    const [comment, setComment] = useState("")
     let { loading, error, data} = useQuery(FETCH_POST_QUERY);
 
-    if(data){
-        console.log(data)
-    }
-
-    const handleComment = () => {
-        console.log("hit handle comment")
-    }
-
-    const handleDelete = (id) => {
-
+    const handleComment = (id) => {
+        if(comment === ""){
+            setComment(id)
+        } else {
+            setComment("")
+        }
     }
 
     return(
@@ -33,7 +32,7 @@ const Home = () => {
             <PostForm />
          
             {
-               loading ? (<h1 className="loading-post">Loading posts...</h1>) :
+                loading ? (<h1 className="loading-post">Loading posts...</h1>) :
                 (
                     data.getPosts.map(post => {
                         return(
@@ -46,12 +45,20 @@ const Home = () => {
                                     <div>{post.body}</div>
                                 </div>
                                 <div className="bottom-container">
-                                    <Link to={`/posts/${post.id}`} onClick={handleComment}>{post.commentCount > 0 ? post.commentCount: null} comment</Link>
+                                    {/* <Link to={`/posts/${post.id}`} onClick={handleComment}>{post.commentCount > 0 ? post.commentCount: null} comment</Link> */}
+                                    <div onClick={() => handleComment(post.id)}>{post.commentCount > 0 ? post.commentCount: null} comment</div>
                                     <div>{post.createdAt}</div>
                                     {user.username === post.username? 
-                                        <div onClick={() => handleDelete(post.id)}>Delete Post</div>
-                                        : <Redirect exact to="/" />}
+                                        <DeleteBtn postId={post.id} />
+                                        : null}
                                 </div>
+                                {comment === post.id? 
+                                <Comments 
+                                comments={post.comments} 
+                                postId={post.id}
+                                user={user.username}
+                                />
+                                : null}
                             </div>
                             
                         )
