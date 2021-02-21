@@ -6,11 +6,32 @@ body {
     margin: 0
 }
 
+.page-container {
+    margin: 0;
+    height: 100%;
+}
+
+.login-nav {
+    padding: 1em 2em .5em;
+    border-bottom: 4px solid #3a5a40;
+}
+
+.nav-message{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    align-self: center;
+}
+
 .login-container, .register-container {
+    margin: 0;
     background: url("../images/zion.svg") no-repeat;
     background-size: cover;
     background-position: center;
-    height: 90vh;
+    height: 85vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +45,11 @@ body {
 }
 
 .login-title, .register-title {
-    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;;
+    font-size: 1.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
     margin-bottom: 1em;
     color:#EE6417;
 

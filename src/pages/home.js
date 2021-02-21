@@ -1,6 +1,6 @@
 import React, {useEffect, useContext}from "react"
 import { useQuery } from "@apollo/client"
-import {Link} from "react-router-dom"
+import {Link, Redirect} from "react-router-dom"
 
 import Navbar from "../navigation/navbar"
 import {AuthContext} from "../utils/context/auth"
@@ -22,8 +22,13 @@ const Home = () => {
         console.log("hit handle comment")
     }
 
+    const handleDelete = (id) => {
+
+    }
+
     return(
         <div className="tittle">
+            { user === null ?  <Redirect exact to="/" />: null}
             <Navbar />
             <PostForm />
          
@@ -41,11 +46,11 @@ const Home = () => {
                                     <div>{post.body}</div>
                                 </div>
                                 <div className="bottom-container">
-                                    <Link to={`/posts/${post.id}`} onClick={handleComment}>comment</Link>
+                                    <Link to={`/posts/${post.id}`} onClick={handleComment}>{post.commentCount > 0 ? post.commentCount: null} comment</Link>
                                     <div>{post.createdAt}</div>
                                     {user.username === post.username? 
-                                        <div>Delete Post</div>
-                                        : null}
+                                        <div onClick={() => handleDelete(post.id)}>Delete Post</div>
+                                        : <Redirect exact to="/" />}
                                 </div>
                             </div>
                             

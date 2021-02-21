@@ -2,6 +2,7 @@ import { useMutation, gql } from "@apollo/client"
 
 import {useForm} from "../utils/custom-hooks"
 import { FETCH_POST_QUERY } from "../utils/graphql"
+import "../styles/post-form.css"
 
 const PostForm = () => {
     const {values, onChange, handleSubmit} = useForm(createPostCallback, {
@@ -37,9 +38,9 @@ const PostForm = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div>
+        <div className="form-wrapper">
+            <form className="post-form" onSubmit={handleSubmit}>
+                <div className="lot-details">
                     <div>Parking Lot Name: </div>
                     <select
                     name="lotName"
@@ -51,8 +52,10 @@ const PostForm = () => {
                         <option value="Lot 3">Lot 3</option>
                     </select>
                 </div>
-                 <div>
+                 <div className="status-details">
                     <div>Status:</div>
+
+                    <div>
                     <input
                     type="radio"
                     name="status"
@@ -60,7 +63,9 @@ const PostForm = () => {
                     value="open"
                     />
                     <label>Open</label>
+                    </div>
 
+                    <div>
                     <input
                     type="radio"
                     name="status"
@@ -68,7 +73,9 @@ const PostForm = () => {
                     value="full"
                     />
                     <label>Full</label>
+                    </div>
 
+                    <div>
                     <input
                     type="radio"
                     name="status"
@@ -76,9 +83,11 @@ const PostForm = () => {
                     value="closed"
                     />
                     <label>Closed</label>
+                    </div>
                 </div> 
 
                 <textarea
+                className="textarea"
                 placeholder="messege"
                 name="body"
                 onChange={onChange}

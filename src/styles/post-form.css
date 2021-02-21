@@ -1,0 +1,29 @@
+.form-wrapper {
+    border: 1px solid black;
+    margin: 0 auto;
+    border-radius: 3px;
+    width: 400px;
+    height: 300px;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-around;
+    /* width: 400px;
+    height: 300px; */
+}
+
+.lot-details, .status-details {
+    background-color: yellow;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 50px;
+}
+
+.textarea {
+    width: 80%;
+    height: 30px;
+}

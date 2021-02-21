@@ -2,6 +2,7 @@ import {useState, useContext} from "react"
 import {gql, useMutation} from "@apollo/client"
 
 import { useForm } from "../utils/custom-hooks"
+import LoginNav from "../navigation/login-nav"
 import {AuthContext} from "../utils/context/auth"
 import "../styles/login.css"
 
@@ -40,6 +41,8 @@ const Register = (props) => {
         }
 
     return(
+        <div>
+        <LoginNav />
         <div className="register-container">
             <div className="register-form-container">
                 <form className="form" onSubmit={handleSubmit}>
@@ -100,6 +103,7 @@ const Register = (props) => {
                 }
             </div>
         </div>
+    </div>
     )
 }
 

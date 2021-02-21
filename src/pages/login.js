@@ -1,5 +1,6 @@
 import {useState, useContext} from "react"
 import {gql, useMutation} from "@apollo/client"
+import {Link} from "react-router-dom"
 
 import { useForm } from "../utils/custom-hooks"
 import {AuthContext} from "../utils/context/auth"
@@ -34,12 +35,12 @@ const Login = (props) => {
     }
 
     return(
-        <div>
+        <div className="page-container">
             <LoginNav />
-        <div className="register-container">
-            <div className="register-form-container">
+        <div className="login-container">
+            <div className="login-form-container">
                 <form className="form" onSubmit={handleSubmit}>
-                    <div className="register-title">Login</div>
+                    <div className="login-title">Login</div>
                     <input 
                     className="input"
                     type="text"
@@ -63,7 +64,7 @@ const Login = (props) => {
                     <button>Login</button>
                 </form>
                 {Object.keys(errors).length > 0 ? 
-                    <div className="ui error message">
+                    <div className="errors">
                         <ul className="list">
                         {Object.values(errors).map((value) => (
                         <li key={value}>{value}</li>
@@ -73,6 +74,8 @@ const Login = (props) => {
                     :
                     null
                 }
+
+                <div>Dont have a login?<span><Link to="/register">Register</Link></span></div>
             </div>
         </div>
     </div>
