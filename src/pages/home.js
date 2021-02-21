@@ -1,32 +1,17 @@
-import React, {useEffect}from "react"
-// import { useQuery } from "@apollo/react-hooks"
-import { useQuery, gql } from "@apollo/client"
+import React, {useEffect, useContext}from "react"
+import { useQuery } from "@apollo/client"
+import {Link} from "react-router-dom"
 
 import Navbar from "../navigation/navbar"
+import {AuthContext} from "../utils/context/auth"
+import PostForm from "../posts/post-form"
+import { FETCH_POST_QUERY } from "../utils/graphql"
+
+
 import "../styles/home.css"
 
-const FETCH_POST_QUERY = gql`
-    query {
-        getPosts{
-            id 
-            body 
-            createdAt 
-            username 
-            lotName
-            status
-            image
-            commentCount 
-            createdAt
-            comments{
-                id 
-                username 
-                createdAt 
-                body  
-                }
-        }
-    }`
-
 const Home = () => {
+    const { user } = useContext(AuthContext)
     let { loading, error, data} = useQuery(FETCH_POST_QUERY);
 
     if(data){
@@ -40,24 +25,8 @@ const Home = () => {
     return(
         <div className="tittle">
             <Navbar />
-            Made it to Home
-            {/* <div className="posts-container"> 
-                {data.getPosts.map(post => {
-                    return(
-                        <div key={post.id}>
-                            <div>{post.lotName}</div>
-                            <div className="detail-grid">
-                                <div>{post.status}</div>
-                                <div>{post.username}</div>
-                                <div>{post.image}</div>
-                                <div>{post.body}</div>
-                            </div>
-                            <div>{post.createdAt}</div>
-                        </div>
-                        
-                    )
-                })}
-            </div> */}
+            <PostForm />
+         
             {
                loading ? (<h1 className="loading-post">Loading posts...</h1>) :
                 (
@@ -72,8 +41,11 @@ const Home = () => {
                                     <div>{post.body}</div>
                                 </div>
                                 <div className="bottom-container">
-                                    <div onClick={handleComment}>comment</div>
+                                    <Link to={`/posts/${post.id}`} onClick={handleComment}>comment</Link>
                                     <div>{post.createdAt}</div>
+                                    {user.username === post.username? 
+                                        <div>Delete Post</div>
+                                        : null}
                                 </div>
                             </div>
                             
