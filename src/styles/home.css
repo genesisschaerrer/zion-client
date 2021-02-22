@@ -104,8 +104,13 @@ body {
 
 .comment-icon {
     width: 30px;
+    cursor: pointer;
 }
 
 .picture-warning{
     font-size: .5rem;
+}
+
+.post-comment-btn{
+    cursor: pointer;
 }
