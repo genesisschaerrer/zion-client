@@ -21,6 +21,10 @@
  
 }
 
+.select-lot {
+    outline: none;
+}
+
 .textarea {
     border: 2px solid black;
     width: 80%;

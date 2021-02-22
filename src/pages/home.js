@@ -1,6 +1,6 @@
 import React, {useContext, useState}from "react"
-import { gql, useQuery, useMutation } from "@apollo/client"
-import {Link, Redirect} from "react-router-dom"
+import { useQuery} from "@apollo/client"
+import {Redirect} from "react-router-dom"
 
 import Navbar from "../navigation/navbar"
 import {AuthContext} from "../utils/context/auth"
@@ -29,7 +29,7 @@ const Home = () => {
 
     return(
         <div>
-            { user === null ?  <Redirect exact to="/" />: null}
+            {user === null ?  <Redirect exact to="/" />: null}
             <Navbar />
             <div className="home-container"> 
             <PostForm />

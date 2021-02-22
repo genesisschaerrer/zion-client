@@ -1,5 +1,5 @@
 import {useState} from "react"
-import {gql, useQuery, useMutation} from "@apollo/client"
+import {gql, useMutation} from "@apollo/client"
 
 import DeleteBtn from "./delete-btn"
 import "../styles/comments.css"

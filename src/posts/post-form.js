@@ -22,7 +22,6 @@ const PostForm = () => {
     })
 
     const[createPost, {error}] = useMutation(CREATE_POST_MUTATION, {
-        // variables: values,
         variables: {
             lotName: values.lotName,
             status: values.status,
@@ -88,14 +87,22 @@ const PostForm = () => {
                 <div className="lot-details">
                     <div>Parking Lot Name: </div>
                     <select
+                    className="select-lot"
                     name="lotName"
                     onChange={onChange}
                     value={values.lotName}
                     >
                         <option value="Choose Option">Choose Option</option>
-                        <option value="Lot 1">Lot 1</option>
-                        <option value="Lot 2">Lot 2</option>
-                        <option value="Lot 3">Lot 3</option>
+                        <option value="Visitor Center">Visitor Center</option>
+                        <option value="Museum">Museum</option>
+                        <option value="Zion Lodge">Zion Lodge</option>
+                        <option value="The Grotto">The Grotto</option>
+                        <option value="Zion Lodge">Zion Lodge</option>
+                        <option value="Big Bend">Big Bend</option>
+                        <option value="Temple of Sinawava">Temple of Sinawava</option>
+                        <option value="Canyon Junction">Canyon Junction</option>
+                        <option value="Zion Mt Carmel Tunnel">Zion Mt Carmel Tunnel</option>
+                        <option value="Springdale Street Parking">Springdale Street Parking</option>
                     </select>
                 </div>
                  <div className="status-details">
