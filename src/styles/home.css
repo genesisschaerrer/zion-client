@@ -45,9 +45,6 @@ body {
     padding: 1em;
 }
 
-.loading-post {
-
-}
 
 .shuttle-wrapper{
     background: url("../images/shuttle.png") no-repeat;
@@ -111,8 +108,4 @@ body {
 
 .picture-warning{
     font-size: .5rem;
-}
-
-.comment-count {
-    
 }
