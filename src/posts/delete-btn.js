@@ -30,7 +30,7 @@ function DeleteBtn(props){
     }
 
     return(
-        <img onClick={callDeletePost} src={deleteIcon} style={{"width": "30px"}}/>
+        <img onClick={callDeletePost} src={deleteIcon} className="delete-btn" />
     )
 
 }

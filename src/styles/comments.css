@@ -45,11 +45,7 @@
     font-size: .7rem;
 }
 
-.delete-btn {
-    background-color: #9d0208;
+.delete-btn{
+    width: 30px;
     cursor: pointer;
-    padding: .3em .4em;
-    font-size: .8rem;
-    color: white;
-    border-radius: 5px;
 }
