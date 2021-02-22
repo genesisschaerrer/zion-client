@@ -29,7 +29,7 @@ function DeleteBtn(props){
     }
 
     return(
-        <div onClick={callDeletePost}>Delete Post</div>
+        <div className="delete-btn" onClick={callDeletePost}>Delete</div>
     )
 
 }

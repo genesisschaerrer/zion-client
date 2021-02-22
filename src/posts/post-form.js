@@ -46,6 +46,7 @@ const PostForm = () => {
                     onChange={onChange}
                     value={values.lotName}
                     >
+                        <option value="Choose Option">Choose Option</option>
                         <option value="Lot 1">Lot 1</option>
                         <option value="Lot 2">Lot 2</option>
                         <option value="Lot 3">Lot 3</option>
@@ -101,7 +102,7 @@ const PostForm = () => {
                 value={values.image} 
                 />
 
-                <button>POST</button>
+                <button className="post-btn">POST</button>
 
                 {error ? 
                     <div>

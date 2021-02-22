@@ -88,7 +88,7 @@ const Register = (props) => {
                     value={values.confirmPassword}
                     onChange={onChange}
                     />
-                    <button>Submit</button>
+                    <button className="register-btn">Submit</button>
                 </form>
                 {Object.keys(errors).length > 0 ? 
                     <div className="ui error message">

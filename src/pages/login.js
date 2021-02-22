@@ -61,7 +61,7 @@ const Login = (props) => {
                     value={values.password}
                     onChange={onChange}
                     />
-                    <button>Login</button>
+                    <button className="login-btn">Login</button>
                 </form>
                 {Object.keys(errors).length > 0 ? 
                     <div className="errors">
@@ -75,7 +75,7 @@ const Login = (props) => {
                     null
                 }
 
-                <div>Dont have a login?<span><Link to="/register">Register</Link></span></div>
+                <div className="register-msg">Dont have a login? <span><Link to="/register">Register</Link></span></div>
             </div>
         </div>
     </div>

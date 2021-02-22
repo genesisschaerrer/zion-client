@@ -1,27 +1,58 @@
-.login-nav {
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1.5px;
+}
+
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1.5em 2em;
+    border-bottom: 4px solid #3a5a40;
 }
 
-.tittle {
-    color: red;
+.logo-home {
+    width: 300px;
+}
+
+.user-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-username {
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+
+.home-container {
+    background-color: #f8f9fa;
+    padding: 1em;
 }
 
 .loading-post {
-    color: yellow;
+
 }
 
 .post-container {
     flex-direction: column;
-    border: 1px solid black;
-    border-radius: 3px;
+    background-color: white;
+    padding: 1em;
+    border: 1px solid #EE6417;
+    border-radius: 5px;
     width: 40%;
     margin: 3em auto;
 }
 
 .lot-name {
-    font-size: 2em;
+    font-size: 1.5em;
     text-align: center;
     text-transform: uppercase;
 }
@@ -29,7 +60,6 @@
 .detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: yellow;
 }
 
 .bottom-container {

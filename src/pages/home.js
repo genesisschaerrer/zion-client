@@ -26,9 +26,10 @@ const Home = () => {
     }
 
     return(
-        <div className="tittle">
+        <div>
             { user === null ?  <Redirect exact to="/" />: null}
             <Navbar />
+            <div className="home-container"> 
             <PostForm />
          
             {
@@ -65,6 +66,7 @@ const Home = () => {
                     }) 
                 )
             }
+            </div>
         </div>
     )
 }

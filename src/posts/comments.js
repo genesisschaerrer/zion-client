@@ -2,6 +2,7 @@ import {useState} from "react"
 import {gql, useQuery, useMutation} from "@apollo/client"
 
 import DeleteBtn from "./delete-btn"
+import "../styles/comments.css"
 
 const Comments = (props) => {
     const [comment, setcomment] = useState("")
@@ -17,24 +18,27 @@ const Comments = (props) => {
 
     })
     return (
-        <div>
-            <div>
-                <input
+        <div className="comments-container">
+            <div className="input-comment-wrapper">
+                <textarea
+                className="add-comment-input"
                 type="text"
                 placeholder="Add a comment..."
                 name="comment"
                 value={comment}
                 onChange={e => setcomment(e.target.value)}
                 />
-                {comment === "" ? null: <div onClick={submitComment}>post</div>}
+                {comment === "" ? null: <div className="post-comment-btn" onClick={submitComment}>Post</div>}
             </div>
             {props.comments.map(comment => {
                 return (
-                    <div key={comment.id}>
+                    <div className="comment-map" key={comment.id}>
                         <div>{comment.username}</div>
                         <div>{comment.body}</div>
-                        <div>{comment.createdAt}</div>
-                        {props.user === comment.username ? <DeleteBtn commentId={comment.id} postId={props.postId} />: null}
+                        <div className="cmt-date-delete">
+                            <div className="comment-date">{comment.createdAt}</div>
+                            {props.user === comment.username ? <DeleteBtn commentId={comment.id} postId={props.postId} />: null}
+                        </div>
                     </div>
                 )
             })}
