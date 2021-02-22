@@ -2,6 +2,7 @@ import {useState} from "react"
 import {gql, useMutation} from "@apollo/client"
 
 import {FETCH_POST_QUERY} from "../utils/graphql"
+import deleteIcon from "../images/icons/delete.svg"
 
 function DeleteBtn(props){
    const mutation = props.commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION
@@ -29,7 +30,7 @@ function DeleteBtn(props){
     }
 
     return(
-        <div className="delete-btn" onClick={callDeletePost}>Delete</div>
+        <img onClick={callDeletePost} src={deleteIcon} style={{"width": "30px"}}/>
     )
 
 }

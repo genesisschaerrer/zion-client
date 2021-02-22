@@ -1,19 +1,34 @@
 import { useMutation, gql } from "@apollo/client"
+import {useState, useRef} from "react"
+import DropzoneComponent from "react-dropzone-component"
+import axios from "axios"
+
+import "../../node_modules/react-dropzone-component/styles/filepicker.css"
+import "../../node_modules/dropzone/dist/min/dropzone.min.css"
 
 import {useForm} from "../utils/custom-hooks"
 import { FETCH_POST_QUERY } from "../utils/graphql"
 import "../styles/post-form.css"
 
 const PostForm = () => {
+    const[url, setUrl] = useState("")
+    const imageRef = useRef(null)
+
     const {values, onChange, handleSubmit} = useForm(createPostCallback, {
         body: "",
         lotName: "",
         status: "",
-        image: ""
+        image: "",
     })
 
     const[createPost, {error}] = useMutation(CREATE_POST_MUTATION, {
-        variables: values,
+        // variables: values,
+        variables: {
+            lotName: values.lotName,
+            status: values.status,
+            body: values.body,
+            image: url
+        },
         update(proxy, result){
             const data = proxy.readQuery({
                 query: FETCH_POST_QUERY
@@ -26,6 +41,7 @@ const PostForm = () => {
             values.lotName = ""
             values.status = ""
             values.image = ""
+            imageRef.current.dropzone.removeAllFiles()
         },
         onError(error){
             return error
@@ -34,6 +50,36 @@ const PostForm = () => {
 
     function createPostCallback() {
         createPost()
+    }
+
+    const componentConfig = () => {
+        return {
+            inconFiletypes: [".jpg", ".png"],
+            showFiletypeIcon: true,
+            postUrl: "https://httpbin.org/post"
+        }
+    }
+
+    const djsConfig = () => {
+        return {
+            addRemoveLinks: true,
+            maxFiles: 1
+        }
+    }
+
+    const handleDrop = () => {
+        return {
+            addedfile: file => {
+                const formData = new FormData()
+
+                formData.append("upload_preset", "canyonspot")
+                formData.append("file", file)
+
+                axios.post("https://api.cloudinary.com/v1_1/genesisschaerrer/image/upload", formData)
+                    .then(res => setUrl(res.data.secure_url)) 
+                    .catch(err => console.log(err))
+            }
+        } 
     }
 
     return (
@@ -94,12 +140,12 @@ const PostForm = () => {
                 value={values.body}
                 />
 
-                <input
-                type="text"
-                placeholder="img url"
-                name="image"
-                onChange={onChange}
-                value={values.image} 
+                <DropzoneComponent
+                className="img"
+                ref={imageRef}
+                config={componentConfig()} 
+                djsConfig={djsConfig()}
+                eventHandlers={handleDrop()}
                 />
 
                 <button className="post-btn">POST</button>

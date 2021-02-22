@@ -26,9 +26,17 @@ body {
     align-items: center;
 }
 
+.logout-icon{
+    width: 20px;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
 .nav-username {
     font-size: 1em;
     text-transform: uppercase;
+    margin-right: 15px;
+    align-self: flex-start;
 }
 
 

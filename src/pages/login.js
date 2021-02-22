@@ -45,7 +45,7 @@ const Login = (props) => {
                     className="input"
                     type="text"
                     label="Username"
-                    placeholder="unsername"
+                    placeholder="username"
                     name="username"
                     value={values.username}
                     
