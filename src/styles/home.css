@@ -49,28 +49,70 @@ body {
 
 }
 
+.shuttle-wrapper{
+    background: url("../images/shuttle.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2em auto;
+    height: 300px;
+    width: 600px;
+}
+
+.shuttle-link {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    opacity: 1;
+}
+
 .post-container {
     flex-direction: column;
     background-color: white;
-    padding: 1em;
-    border: 1px solid #EE6417;
-    border-radius: 5px;
+    padding: 1.5em;
+    border: 2px solid #EE6417;
+    border-radius: 10px;
     width: 40%;
     margin: 3em auto;
 }
 
 .lot-name {
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-align: center;
     text-transform: uppercase;
+    margin-bottom: .7em;
 }
 
 .detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
+.post-date{
+    font-size: .7rem;
+    align-self: center;
+}
 .bottom-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
+}
+
+.comment-icon {
+    width: 30px;
+}
+
+.picture-warning{
+    font-size: .5rem;
+}
+
+.comment-count {
+    
 }

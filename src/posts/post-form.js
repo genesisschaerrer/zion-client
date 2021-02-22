@@ -147,7 +147,7 @@ const PostForm = () => {
                 djsConfig={djsConfig()}
                 eventHandlers={handleDrop()}
                 />
-
+                <div className="picture-warning">wait for picture to load before posting</div>
                 <button className="post-btn">POST</button>
 
                 {error ? 

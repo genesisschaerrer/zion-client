@@ -34,6 +34,10 @@ const Home = () => {
             <div className="home-container"> 
             <PostForm />
          
+            <div className="shuttle-wrapper">
+                <a className="shuttle-link" href="https://www.nps.gov/zion/planyourvisit/zion-canyon-shuttle-system.htm">See Shuttle Schedule</a>
+                <a className="shuttle-link" href="https://www.recreation.gov/ticket/facility/300016">Get Shuttle tickets</a>
+            </div>
             {
                 loading ? (<h1 className="loading-post">Loading posts...</h1>) :
                 (
@@ -42,15 +46,15 @@ const Home = () => {
                             <div className="post-container" key={post.id}>
                                 <div className="lot-name">{post.lotName}</div>
                                 <div className="detail-grid">
-                                    <div><span>status: </span>{post.status}</div>
+                                    <div><span>Status: </span>{post.status}</div>
                                     <div>{post.username}</div>
                                     <img src={post.image}  style={{"width": "200px"}}/>
                                     <div>{post.body}</div>
                                 </div>
                                 <div className="bottom-container">
                                     {/* <Link to={`/posts/${post.id}`} onClick={handleComment}>{post.commentCount > 0 ? post.commentCount: null} comment</Link> */}
-                                    <div onClick={() => handleComment(post.id)}>{post.commentCount > 0 ? post.commentCount: null}<img style={{"width": "40px"}} src={commentIcon} /></div>
-                                    <div>{post.createdAt}</div>
+                                    <div onClick={() => handleComment(post.id)}>{post.commentCount > 0 ? <span className="comment-count">{post.commentCount}</span>: null}<img className="comment-icon" src={commentIcon} /></div>
+                                    <div className="post-date">{post.createdAt}</div>
                                     {user.username === post.username? 
                                         <DeleteBtn postId={post.id} />
                                         : null}
