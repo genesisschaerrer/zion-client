@@ -25,6 +25,7 @@
     color: white;
     padding: .3em .7em;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .comment-map {
@@ -46,6 +47,7 @@
 
 .delete-btn {
     background-color: #9d0208;
+    cursor: pointer;
     padding: .3em .4em;
     font-size: .8rem;
     color: white;
