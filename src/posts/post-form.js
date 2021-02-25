@@ -53,7 +53,7 @@ const PostForm = () => {
 
     const componentConfig = () => {
         return {
-            inconFiletypes: [".jpg", ".png"],
+            iconFiletypes: [".jpg", ".png"],
             showFiletypeIcon: true,
             postUrl: "https://httpbin.org/post"
         }
