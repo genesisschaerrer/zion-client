@@ -35,8 +35,8 @@ const Home = () => {
             <PostForm />
          
             <div className="shuttle-wrapper">
-                <a className="shuttle-link" href="https://www.nps.gov/zion/planyourvisit/zion-canyon-shuttle-system.htm">See Shuttle Schedule</a>
-                <a className="shuttle-link" href="https://www.recreation.gov/ticket/facility/300016">Get Shuttle tickets</a>
+                <a className="shuttle-link" target="_blank" href="https://www.nps.gov/zion/planyourvisit/zion-canyon-shuttle-system.htm">See Shuttle Schedule</a>
+                <a className="shuttle-link" target="_blank" href="https://www.recreation.gov/ticket/facility/300016">Get Shuttle tickets</a>
             </div>
             {
                 loading ? (<h1 className="loading-post">Loading posts...</h1>) :
